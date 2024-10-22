@@ -1,0 +1,11 @@
+[package]
+name = "Junioraufgabe1"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# Special config for the binary because src dir is called Quelltext and not src
+[[bin]]
+name = "garden"
+path = "Quelltext/main.rs"
