@@ -23,3 +23,11 @@ pub fn read_int(message: &str) -> i64 {
         }
     }
 }
+
+
+pub fn int_from_str(input:&str) -> i64 {
+    match input.trim().parse::<i64>() {
+        Ok(ok) => ok,
+        Err(_e) => panic!("File is broken couldn't parse {}.", input),
+    }
+}

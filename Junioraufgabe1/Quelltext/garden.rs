@@ -1,6 +1,5 @@
 use std::fs;
-use std::ops::Range;
-use crate::utils::read_int;
+use crate::utils::{int_from_str, read_int};
 
 
 #[derive(Debug)]
@@ -12,7 +11,6 @@ pub struct Garden {
 
 impl Garden {
     pub fn from_file(path: String) -> Garden {
-        println!("{}", path);
         let file: String = match fs::read_to_string(path) {
             Ok(f) =>f,
             Err(_err) => panic!("File not found or wrong encoding."),
@@ -37,11 +35,4 @@ impl Garden {
         }
     }
     
-}
-
-fn int_from_str(input:&str) -> i64 {
-    match input.trim().parse::<i64>() {
-        Ok(ok) => ok,
-        Err(_e) => panic!("File is broken couldn't parse {}.", input),
-    }
 }
