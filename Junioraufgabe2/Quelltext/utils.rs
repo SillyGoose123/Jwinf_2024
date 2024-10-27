@@ -15,7 +15,7 @@ pub fn from_input() -> String {
     input
 }
 
-pub fn jump_width(c: &char) -> usize {
+pub fn calc_jump_width(c: &char) -> usize {
     // umlauts are not in the ascii table so we have to handle them separately
     match c {
         'ä' => 27,

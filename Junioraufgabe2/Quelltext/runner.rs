@@ -1,5 +1,5 @@
 use std::process::exit;
-use crate::utils::jump_width;
+use crate::utils::calc_jump_width;
 
 #[derive(Clone)]
 pub struct Runner {
@@ -19,9 +19,9 @@ impl Runner {
     
     pub fn hop(&mut self) {
         let new_pos = match &self.characters.get(self.pos) {
-            Some(c) => jump_width(c),
+            Some(c) => calc_jump_width(c),
             None => {
-                println!("The Winner is: {}", &self.player_name);
+                print!("The Winner is: {}", &self.player_name);
                 exit(0);
             }
         };
