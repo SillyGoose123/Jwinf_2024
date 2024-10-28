@@ -28,8 +28,10 @@ fn main() {
         from_input()
     };
 
-    //remove everything that is not a letter
-    let characters: Vec<char> = text.chars().filter(|c| c.is_alphabetic()).collect();
+    //lowercase & remove everything that is not a letter
+    let characters: Vec<char> = text.
+        to_lowercase()
+        .chars().filter(|c| c.is_alphabetic()).collect();
 
     //create a runner for each player
     let mut runners: Vec<Runner> = vec![
