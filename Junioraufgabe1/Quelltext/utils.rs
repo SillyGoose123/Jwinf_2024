@@ -31,3 +31,15 @@ pub fn int_from_str(input:&str) -> i64 {
         Err(_e) => panic!("File is broken couldn't parse {}.", input),
     }
 }
+
+pub fn round_up_to_even(i: i64) -> i64 {
+    if i % 2 == 0 {
+        i
+    } else {
+        i + 1
+    }
+}
+
+pub fn is_more_squared(current: f64, last: f64) -> bool {
+    (1.0 - current).abs() < (1.0 - last).abs()
+}
