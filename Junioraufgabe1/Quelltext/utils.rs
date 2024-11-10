@@ -40,6 +40,9 @@ pub fn round_up_to_even(i: i64) -> i64 {
     }
 }
 
-pub fn is_more_squared(current: f64, last: f64) -> bool {
-    (1.0 - current).abs() < (1.0 - last).abs()
+pub fn is_more_squared(current: i64, last: i64) -> bool {
+    if current == last {
+        return true;
+    }
+    (1 - current).abs() < (1 - last).abs()
 }

@@ -5,8 +5,8 @@ use crate::utils::{int_from_str, is_more_squared, read_int, round_up_to_even};
 #[derive(Debug)]
 pub struct Garden {
     interested: i64,
-    height: f64,
-    width: f64,
+    height: i64,
+    width: i64,
 }
 
 impl Garden {
@@ -14,8 +14,8 @@ impl Garden {
         // round the number of interested persons up to an even number
         Garden {
             interested: round_up_to_even(interested),
-            height: height as f64,
-            width: width as f64,
+            height,
+            width,
         }
     }
 
@@ -38,38 +38,32 @@ impl Garden {
                     read_int("Gib die Breite des Grundstückes an:"))
     }
 
-    fn calc_square_size(&self, vertical_lines: f64) -> f64 {
-        let new_horizontal_lines: f64 = self.interested as f64 / vertical_lines;
-
-        print!("({} / {}) / ({} / {}) = ", self.width, new_horizontal_lines, self.height, vertical_lines);
-
-        print!("{} / {} = ", self.width / new_horizontal_lines, self.height / vertical_lines);
-
-
-        println!("{}", (self.width  / new_horizontal_lines) / self.height / vertical_lines);
-
-        (self.width / new_horizontal_lines) / (self.height / vertical_lines)
+    fn calc_square_size(&self, vertical_lines: i64) -> i64 {
+        println!("({} / {}) / ({} / {}) = {}", self.width,self.calc_lines(vertical_lines), self.height, vertical_lines, (self.width / self.calc_lines(vertical_lines)) / (self.height / vertical_lines));
+        (self.width / self.calc_lines(vertical_lines)) / (self.height / vertical_lines)
     }
 
-    pub fn calculate_area(&self) -> (i64, i64) {
-        //find the most square layout
-        self.calc_most_square_layout(0, 0.0)
+    fn calc_lines(&self, vertical_lines: i64) -> i64 {
+        println!("{} / {} = {}", self.interested - 1, vertical_lines, ((self.interested - 1) / vertical_lines));
+       (self.interested - 1) / vertical_lines
     }
 
+    pub fn calc(&self) -> (i64, i64) {
 
-    fn calc_most_square_layout(&self, last_vertical_lines: i64, last_square_diff: f64) -> (i64, i64) {
-        let new_vertical_lines = last_vertical_lines + 1;
 
-        let new_square_diff = self.calc_square_size(new_vertical_lines as f64);
 
-        if is_more_squared(new_square_diff, last_square_diff) {
-            self.calc_most_square_layout(new_vertical_lines, new_square_diff)
-        } else {
-            (
-                last_vertical_lines,
-                self.interested / last_vertical_lines
-            )
+        let mut last: i64 = 0;
+        for i in 1..self.interested {
+            let cur = self.calc_square_size(i);
+
+            if !is_more_squared(cur, last) {
+                return (i - 1, self.calc_lines(i - 1));
+            }
+
+            last = cur;
         }
+
+        (0, 0)
     }
 }
 

@@ -24,5 +24,5 @@ fn main() {
         Garden::from_input()
     };
 
-    println!("{:?}", garden.calculate_area());
+    println!("{:?}", garden.calc());
 }
