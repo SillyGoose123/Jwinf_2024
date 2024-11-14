@@ -2,7 +2,6 @@ use std::env::args;
 use std::panic;
 use std::process::exit;
 use crate::garden::Garden;
-use crate::utils::round_up_to_even;
 
 mod garden;
 mod utils;

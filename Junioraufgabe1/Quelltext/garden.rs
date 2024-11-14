@@ -1,4 +1,3 @@
-use std::fmt::{Display, Formatter};
 use std::fs;
 use crate::utils::{int_from_str, is_more_squared, read_int, round_up_to_even};
 
