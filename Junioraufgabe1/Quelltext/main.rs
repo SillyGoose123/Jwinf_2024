@@ -2,6 +2,7 @@ use std::env::args;
 use std::panic;
 use std::process::exit;
 use crate::garden::Garden;
+use crate::utils::round_up_to_even;
 
 mod garden;
 mod utils;
@@ -24,5 +25,6 @@ fn main() {
         Garden::from_input()
     };
 
-    println!("{:?}", garden.calc());
+    let field = garden.calc();
+    println!("{} Felder mit den Abmessungen: {}m (Breite) x {}m (Höhe)", garden.interested, field.0, field.1);
 }
