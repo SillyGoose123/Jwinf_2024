@@ -41,11 +41,11 @@ impl Garden {
                     read_int("Gib die Breite des Grundstückes an:"))
     }
 
-    pub fn get_horizontal_lines(&self, vertical_lines: i64) -> i64 {
+    fn get_horizontal_lines(&self, vertical_lines: i64) -> i64 {
         (self.interested / (vertical_lines + 1)) - 1
     }
 
-    pub fn calc_square_size(&self, vertical_lines: i64, horizontal_lines: i64) -> f64 {
+    fn calc_square_size(&self, vertical_lines: i64, horizontal_lines: i64) -> f64 {
         if horizontal_lines == 0 {
             return 0.0;
         }
@@ -53,7 +53,7 @@ impl Garden {
         (self.width as f64 / vertical_lines as f64) / (self.height as f64 / horizontal_lines as f64)
     }
 
-    pub fn find_best_division(&self) -> (i64, i64){
+    fn find_best_division(&self) -> (i64, i64){
         let mut best_square: f64 = 0.0;
         let mut best_lines = (0, 0);
 
